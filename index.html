@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homenagem ao Billy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fall {
+            from {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .paw {
+            position: absolute;
+            top: -50px;
+            width: 30px;
+            height: 30px;
+            background: url('pata.png') no-repeat center;
+            background-size: contain;
+            animation: fall linear infinite;
+        }
+      
+    </style>
+</head>
+
+<body class="bg-white-100 text-gray-900  overflow-hidden">
+    <div class="max-w-2xl min-h-full mx-auto p-6">
+        <h1 class="text-5xl font-bold text-center text-stone-800">Homenagem ao Billy</h1>
+        <div class="relative w-full  mt-6">
+            <div class="relative w-full mt-6">
+                <div class="relative w-full h-[600px] overflow-hidden rounded-lg shadow-lg">
+                    <img id="carouselImage" src="1.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
+                </div>
+            </div>
+            <div>
+                <div class="mt-4 text-center text-stone-900">
+                    <p><strong>Nome:</strong> Billy</p>
+                    <p><strong>Apelido:</strong> Bilico</p>
+                    <p><strong>Data de Nascimento:</strong> 03/05/2014</p>
+                    <p><strong>Data de Falecimento:</strong> 06/01/2025</p>
+                </div>
+                <br>
+                <p class="text-center italic text-stone-500">
+                    Sentava do meu lado quando eu estava triste, como se entendesse cada sentimento sem precisar de palavras. Nos dias bons, celebrava comigo, e nos dias ruins, apenas ficava ali, presente, como só os verdadeiros amigos sabem fazer.</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        const images = ['1.jpg', '2.jpg', '3.jpg','4.jpg','6.jpg'];
+        let currentIndex = 0;
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('carouselImage').src = images[currentIndex];
+        }
+
+        setInterval(changeImage, 3000);
+
+        function createPaw() {
+            const paw = document.createElement('div');
+            paw.classList.add('paw');
+            paw.style.left = Math.random() * window.innerWidth + 'px';
+            paw.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(paw);
+
+            setTimeout(() => {
+                paw.remove();
+            }, 5000);
+        }
+
+        setInterval(createPaw, 500);
+    </script>
+</body>
+
+</html>
